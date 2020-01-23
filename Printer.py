@@ -1,11 +1,5 @@
 # classes
-from Ladder import *
-from Pallet import *
-from Shipment import *
-# data
-from AppData import *
-# calculations
-from Calculations import *
+from Pallet import EUR6pallet, EURpallet
 
 def printLadder(ladder):
     if(ladder.length>0):

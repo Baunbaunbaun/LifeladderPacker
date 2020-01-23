@@ -1,6 +1,7 @@
 # imports
 from AppData import *
 from Calculations import *
+import binpacking
 
 # Shipment object
 class Shipment:
@@ -16,6 +17,8 @@ class Shipment:
         
     def packOnEUR6pallets(cls):
         foldHeights = list(ladder.foldHeight for ladder in cls.ladders)
+        print('test foldheights:', foldHeights)
+        print('max is:',maxPackingHeight-palletHeight-wrappingHeight)
 
         # create dictionary
         laddersWithHeights = []

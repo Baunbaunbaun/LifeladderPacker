@@ -1,35 +1,9 @@
 # imports
 from AppData import *
 # classes
-from Ladder import *
+from Ladder import Ladder
 from Pallet import *
 from Shipment import *
-
-# calc ladder weight
-def calcWeight(ladder):
-    return (
-        ladder.modules * moduleWeight + # modules
-        ladder.brackets * bracketWeight + # brackets
-        fixedSuppliesWeight + # fixedSupplies
-        ladder.lightUnits * lightUnitWeight) # lightUnits
-
-# calc number of brackets to include
-def calcBrackets(length):
-    index = 0
-    for limit in bracketsIncluded:    
-        if(limit>=length):
-            return index
-        index+=1
-    return 0
-
-# calc folded height of ladder
-def calcFoldHeight(length):
-    nrModules = int(length/moduleLength)
-    # first iteration of foldHeight (73mm)
-    res1 = addedFoldHeight[0] * math.floor((nrModules+1)/4)
-    # second iteration of foldHeight (103mm)
-    res2 = addedFoldHeight[1] * math.floor((nrModules-1)/4)
-    return intitialFoldHeight + res1 + res2
 
 # merge EUR6pallets to EURpallets
 def pairEUR6pallets(palletLst): # e.g. [1600, 1200, 1700, 1700] in mm
@@ -54,10 +28,15 @@ def pairEUR6pallets(palletLst): # e.g. [1600, 1200, 1700, 1700] in mm
         resultPallets.append(palletLst.pop())
     return resultPallets 
 
-def addListOfLadders(requestList):
-    for request in requestList: 
-        addLadders(request[0],request[1],request[2])
+def createListOfLadders(order):
+    ladderLst = []
+    for request in order: 
+        ladderLst.append(createLadders(request[0],request[1],request[2]))
+    return ladderLst
     
-def addLadders(amount, length, lights): 
-    for l in range(amount): 
-        allLadders.append(Ladder.create(length,lights)) 
+def createLadders(amount, length, lights): 
+    ladderLst = []
+    for l in range(amount):
+        x = Ladder.create(length,lights) 
+        ladderLst.append(x) 
+    return ladderLst

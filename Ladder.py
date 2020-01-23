@@ -1,6 +1,6 @@
 # imports
+import math
 from AppData import *
-from Calculations import *
 
 class Ladder:
 
@@ -11,9 +11,9 @@ class Ladder:
         self.lightUnits = lights
         self.length = length
         self.modules =  int(length/moduleLength)
-        self.foldHeight = calcFoldHeight(length)
-        self.brackets = calcBrackets(length)   
-        self.weight = calcWeight(self)
+        self.foldHeight = self.calcFoldHeight(length)
+        self.brackets = self.calcBrackets(length)   
+        self.weight = self.calcWeight(self)
         if(self.length==0):
             self.weight = 0
             self.foldHeight = 0
@@ -35,3 +35,32 @@ class Ladder:
             return False
         else: 
             return True
+    
+    # calc folded height of ladder
+    @staticmethod
+    def calcFoldHeight(length):
+        nrModules = int(length/moduleLength)
+        # first iteration of foldHeight (73mm)
+        res1 = addedFoldHeight[0] * math.floor((nrModules+1)/4)
+        # second iteration of foldHeight (103mm)
+        res2 = addedFoldHeight[1] * math.floor((nrModules-1)/4)
+        return intitialFoldHeight + res1 + res2
+
+    # calc number of brackets to include
+    @staticmethod
+    def calcBrackets(length):
+        index = 0
+        for limit in bracketsIncluded:    
+            if(limit>=length):
+                return index
+            index+=1
+        return 0
+    
+    # calc ladder weight
+    @staticmethod
+    def calcWeight(ladder):
+        return (
+            ladder.modules * moduleWeight + # modules
+            ladder.brackets * bracketWeight + # brackets
+            fixedSuppliesWeight + # fixedSupplies
+            ladder.lightUnits * lightUnitWeight) # lightUnits
