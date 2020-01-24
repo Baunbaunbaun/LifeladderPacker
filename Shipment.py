@@ -1,6 +1,7 @@
 # imports
-from AppData import *
-from Calculations import *
+from AppData import maxPackingHeight, palletHeight, wrappingHeight
+from Calculations import pairEUR6pallets
+from Pallet import EUR6pallet
 import binpacking
 
 # Shipment object
@@ -17,17 +18,15 @@ class Shipment:
         
     def packOnEUR6pallets(cls):
         foldHeights = list(ladder.foldHeight for ladder in cls.ladders)
-        print('test foldheights:', foldHeights)
-        print('max is:',maxPackingHeight-palletHeight-wrappingHeight)
 
         # create dictionary
-        laddersWithHeights = []
-        for index in range(len(foldHeights)):
-            laddersWithHeights.append((str(foldHeights[index]),str(cls.ladders[index].id))) 
+        #laddersWithHeights = []
+        #for index in range(len(foldHeights)):
+            #laddersWithHeights.append((str(foldHeights[index]),str(cls.ladders[index].id))) 
             
         laddersHeightsInEUR6pallets = binpacking.to_constant_volume(foldHeights, maxPackingHeight-palletHeight-wrappingHeight)
         # e.g. ladderHeightsInEUR6pallets = [[1370, 138], [1370, 138], [666, 666], [666]]
-        print('HALF PALLETS =',laddersHeightsInEUR6pallets)
+        print(len(laddersHeightsInEUR6pallets),'HALF PALLETS =',laddersHeightsInEUR6pallets)
         cls.fromHeightsToLadders(laddersHeightsInEUR6pallets, cls.ladders)
             
     def fromHeightsToLadders(cls, heightLst, ladderLst):

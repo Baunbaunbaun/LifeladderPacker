@@ -1,6 +1,5 @@
 # imports
 from AppData import *
-from Calculations import *
 
 # pallet parent object
 class Pallet: 

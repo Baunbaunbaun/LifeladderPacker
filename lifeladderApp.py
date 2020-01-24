@@ -20,7 +20,7 @@ from AppData import *
 # calculations
 from Calculations import *
 '''
-from Calculations import createListOfLadders
+from Calculations import createListOfLadders, checkInput, clear
 
 # printer
 from Printer import *
@@ -29,44 +29,38 @@ from Shipment import Shipment
 
 # # APPLICATION # #
 
-# A) Add some ladders to an order
-orderInNumbers = [(5,3000,1) ,(5,900,0),(6,600,0), (2, 8400,0) ,(1,1500,0),(1,8100,0),(5,5100,0)]
+# get user input
+clear()
+print('Please input all the lifeladders for this shipment.')
+userInput = ''
+orderInNumbers = []
+while(userInput != 'done'):
+    userInput = input('The format is "amount_of_ladders, length_in_mm, number_of_lightUnits" e.g. 2, 3600, 1.\n\nWhen you are done write "done"\nInput next ladders:\n')
+    if(userInput == 'done'):
+        break
+    if(userInput == 'delete'):
+        del(orderInNumbers[-1])
+        print('\nPresent order list:\t\t',orderInNumbers,'\n')
+        continue
+    ladderOrder = checkInput(userInput)
+    if(ladderOrder == None):
+        print('\nTry to input those ladders again\n')
+        continue
+    orderInNumbers.append(ladderOrder)
+    print('\nPresent order list:\t\t',orderInNumbers,'\n')
 
-# B) create ladders and add them to the list 'allLadders'
+print('\nThank you!\nYour shipment contains',(sum(order[0] for order in orderInNumbers)),'ladders.\n')
+
 orderInLadders = createListOfLadders(orderInNumbers)
 
-moreLadders = input('Want to add more ladders?')
+printListOfLadders(sorted(orderInLadders))
 
-# C) print the list of ladders
-printListOfLadders(orderInLadders)
-# printListOfLadders(sorted(allLaddeordergather data of shipment
-myShipment = Shipment(order)
+myShipment = Shipment(orderInLadders)
 
-#printShipmentEUR6pallets(myShipment)
+printShipmentEUR6pallets(myShipment)
 
-print('PAIRING pallets ====>>>\n')
+print('\nPAIRING pallets ====>>>\n')
 
 printShipmentEURpallets(myShipment)
 
-
-#x = pairEUR6pallets(myShipment.pallets)
-
-#for p in x:
- #   printPallet(p)
-
-# E) print shipment data
-#printShipment(myShipment)
-
-
-
-'''
-printPacking(myShipment)
-
-
-printPacking(myShipment)
-
-# F) pack shipment on pallets
-#packShipment(myShipment)
-
-'''
-
+printShipment(myShipment)

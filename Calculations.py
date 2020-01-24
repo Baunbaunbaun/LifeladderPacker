@@ -1,9 +1,11 @@
 # imports
 from AppData import *
+from os import system, name 
+import re
+
 # classes
 from Ladder import Ladder
 from Pallet import *
-from Shipment import *
 
 # merge EUR6pallets to EURpallets
 def pairEUR6pallets(palletLst): # e.g. [1600, 1200, 1700, 1700] in mm
@@ -31,7 +33,7 @@ def pairEUR6pallets(palletLst): # e.g. [1600, 1200, 1700, 1700] in mm
 def createListOfLadders(order):
     ladderLst = []
     for request in order: 
-        ladderLst.append(createLadders(request[0],request[1],request[2]))
+        ladderLst = ladderLst + createLadders(request[0],request[1],request[2])
     return ladderLst
     
 def createLadders(amount, length, lights): 
@@ -40,3 +42,29 @@ def createLadders(amount, length, lights):
         x = Ladder.create(length,lights) 
         ladderLst.append(x) 
     return ladderLst
+
+# check user input
+def checkInput(inputStr):
+    inputAsList = re.split(',',inputStr)
+    if(len(inputAsList) != 3):
+        print('Error - Exactly 3 arguments are needed.\n')
+        return None
+    numberTuple = [0,0,0]
+    try:
+        for index in range(3):
+            numberTuple[index] = int(inputAsList[index])
+        return numberTuple
+    except:
+        print('Error - Not all inputs are numbers.\n')
+        return None
+
+# clear screen 
+def clear(): 
+    
+    # for windows 
+    if name == 'nt': 
+        _ = system('cls') 
+  
+    # for mac and linux(here, os.name is 'posix') 
+    else: 
+        _ = system('clear')
