@@ -16,11 +16,12 @@ import itertools
 import uuid 
 
 # data
-from AppData import *
 # calculations
 from Calculations import *
 '''
+from AppData import maxPackingHeight
 from Calculations import createListOfLadders, checkInput, clear
+from sys import exit
 
 # printer
 from Printer import *
@@ -31,11 +32,25 @@ from Shipment import Shipment
 
 # get user input
 clear()
+print('\n\n********************************')
+print('****** LIFELADDER PACKING ******')
+print('********************************\n\n')
+
+print('Max packing height is',maxPackingHeight,'mm\nIf you want to set another max height then input now. Else press ENTER')
+maxH = input()
+if(len(maxH)>1):
+    try:
+        print('\nNew max height is',int(maxH),'mm\n')
+        maxPackingHeight = int(maxH)
+    except:
+        print('Your input is not a number! EXITING')
+        exit()
+print('\n********************************\n')
 print('Please input all the lifeladders for this shipment.')
 userInput = ''
 orderInNumbers = []
 while(userInput != 'done'):
-    userInput = input('The format is "amount_of_ladders, length_in_mm, number_of_lightUnits" e.g. 2, 3600, 1.\n\nWhen you are done write "done"\nInput next ladders:\n')
+    userInput = input('The format is "amount_of_ladders, length_in_mm, number_of_lightUnits_0_or_1" e.g. 2, 3600, 1.\n\nWhen you are done write "done"\nInput next ladders:\n')
     if(userInput == 'done'):
         break
     if(userInput == 'delete'):
@@ -49,7 +64,13 @@ while(userInput != 'done'):
     orderInNumbers.append(ladderOrder)
     print('\nPresent order list:\t\t',orderInNumbers,'\n')
 
-print('\nThank you!\nYour shipment contains',(sum(order[0] for order in orderInNumbers)),'ladders.\n')
+if(len(orderInNumbers)==0):
+    print('You have ordered 0 ladders. EXITING')
+    exit()
+else:
+    print('\nThank you!\nYour shipment contains',(sum(order[0] for order in orderInNumbers)),'ladders.\n')
+
+print('\n********************************\n')
 
 orderInLadders = createListOfLadders(orderInNumbers)
 
@@ -57,10 +78,19 @@ printListOfLadders(sorted(orderInLadders))
 
 myShipment = Shipment(orderInLadders)
 
-printShipmentEUR6pallets(myShipment)
+printShipmentEURpallets(myShipment)
 
-print('\nPAIRING pallets ====>>>\n')
+
+
+
+'''
+#printShipmentEUR6pallets(myShipment)
+print('\n**********************************')
+print('* PAIRING pallets on EUR pallets *')
+print('**********************************\n')
 
 printShipmentEURpallets(myShipment)
 
 printShipment(myShipment)
+'''
+

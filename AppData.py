@@ -23,14 +23,18 @@ lightUnitWeight = 2600 # with support
 handHoldWeight = [2800,0,6500] # Small, Medium, Large
 
 wrappingWeight = 2500
-#EURpalletWeight = 25000
+
+# pallet data
 EUR6palletWeight = 12500
+EUR6palletLength = 600
+EURpalletLength = 1200
+palletWidth = 800
+palletHeight = 150
 
 # length and height table in mm
 intitialFoldHeight = 138
 addedFoldHeight = [73, 103]
 moduleLength = 300
-palletHeight = 150
 wrappingHeight = 50
 
 # indexes

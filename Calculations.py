@@ -53,6 +53,9 @@ def checkInput(inputStr):
     try:
         for index in range(3):
             numberTuple[index] = int(inputAsList[index])
+        if(numberTuple[2] not in (0,1)):
+            print('Number of lightUnits is not 0 or 1. Try again.')
+            return None
         return numberTuple
     except:
         print('Error - Not all inputs are numbers.\n')
@@ -68,3 +71,11 @@ def clear():
     # for mac and linux(here, os.name is 'posix') 
     else: 
         _ = system('clear')
+
+def dimensionsFormatter(pallet):
+    if (type(pallet)== EUR6pallet):
+        dim = [palletWidth/1000, EUR6palletLength/1000, pallet.height/1000] 
+    else: 
+        dim = [palletWidth/1000, EURpalletLength/1000, pallet.height/1000] 
+    return str(round(dim[0],1))+' X '+str(round(dim[1],1))+' X '+str(round(dim[2],1))
+    
