@@ -5,14 +5,14 @@ class Pallet:
     pass
 
 # so called HALF PALLET
-class EUR6pallet(Pallet): 
+class EPALhalfpallet(Pallet): 
 
     # initialize a half pallet
     def __init__(self):
         self.id = getPalletID() 
         self.pallets = []
         self.ladders = [] # ladderLst
-        self.weight = EUR6palletWeight # sum(ladder.weight for ladder in ladderLst)
+        self.weight = EPALhalfpalletWeight # sum(ladder.weight for ladder in ladderLst)
         self.height = palletHeight # sum(ladder.foldHeight for ladder in ladderLst)
 
     def amend(cls, itemLst):
@@ -24,8 +24,8 @@ class EUR6pallet(Pallet):
         cls.weight += ladder.weight
         cls.height += ladder.foldHeight
 
-# twice the size of EUR6pallet
-class EURpallet(Pallet): 
+# twice the size of EPALhalfpallet
+class EPALpallet(Pallet): 
     
     def __init__(self, pallet1,pallet2):
         self.id = str(pallet1.id)+'_'+str(pallet2.id)
@@ -34,6 +34,6 @@ class EURpallet(Pallet):
         self.weight = pallet1.weight + pallet2.weight
         self.height = max(pallet1.height,pallet2.height)
     
-    # create class method to balance all ladders on the EURpallet
+    # create class method to balance all ladders on the EPALpallet
     # So we dont have odd ladders in the bottom  
 

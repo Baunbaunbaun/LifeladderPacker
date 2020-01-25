@@ -25,9 +25,9 @@ handHoldWeight = [2800,0,6500] # Small, Medium, Large
 wrappingWeight = 2500
 
 # pallet data
-EUR6palletWeight = 12500
-EUR6palletLength = 600
-EURpalletLength = 1200
+EPALhalfpalletWeight = 12500
+EPALhalfpalletLength = 600
+EPALpalletLength = 1200
 palletWidth = 800
 palletHeight = 150
 

@@ -7,8 +7,8 @@ import re
 from Ladder import Ladder
 from Pallet import *
 
-# merge EUR6pallets to EURpallets
-def pairEUR6pallets(palletLst): # e.g. [1600, 1200, 1700, 1700] in mm
+# merge EPALhalfpallets to EPALpallets
+def pairEPALhalfpallets(palletLst): # e.g. [1600, 1200, 1700, 1700] in mm
     heights = list(pallet.height for pallet in palletLst)
     heights = sorted(heights)
     
@@ -23,7 +23,7 @@ def pairEUR6pallets(palletLst): # e.g. [1600, 1200, 1700, 1700] in mm
     while(len(palletLst)>1):
         diffLst = calcDifferenceBetweenpallets(heights)
         index = diffLst.index(min(diffLst))
-        resultPallets.append(EURpallet(palletLst.pop(index), palletLst.pop(index)))
+        resultPallets.append(EPALpallet(palletLst.pop(index), palletLst.pop(index)))
         heights.pop(index)
         heights.pop(index)
     if(len(palletLst)==1):
@@ -73,9 +73,9 @@ def clear():
         _ = system('clear')
 
 def dimensionsFormatter(pallet):
-    if (type(pallet)== EUR6pallet):
-        dim = [palletWidth/1000, EUR6palletLength/1000, pallet.height/1000] 
+    if (type(pallet)== EPALhalfpallet):
+        dim = [palletWidth/1000, EPALhalfpalletLength/1000, pallet.height/1000] 
     else: 
-        dim = [palletWidth/1000, EURpalletLength/1000, pallet.height/1000] 
+        dim = [palletWidth/1000, EPALpalletLength/1000, pallet.height/1000] 
     return str(round(dim[0],1))+' X '+str(round(dim[1],1))+' X '+str(round(dim[2],1))
     

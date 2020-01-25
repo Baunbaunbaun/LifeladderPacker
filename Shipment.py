@@ -1,7 +1,7 @@
 # imports
 from AppData import maxPackingHeight, palletHeight, wrappingHeight
-from Calculations import pairEUR6pallets
-from Pallet import EUR6pallet
+from Calculations import pairEPALhalfpallets
+from Pallet import EPALhalfpallet
 import binpacking
 
 # Shipment object
@@ -12,11 +12,11 @@ class Shipment:
             
         self.ladders = ladderLst
         self.pallets = []
-        self.packOnEUR6pallets()
-        self.packedPallets = pairEUR6pallets(self.pallets)
+        self.packOnEPALhalfpallets()
+        self.packedPallets = pairEPALhalfpallets(self.pallets)
         self.totalWeight = sum(pallet.weight for pallet in self.pallets)
         
-    def packOnEUR6pallets(cls):
+    def packOnEPALhalfpallets(cls):
         foldHeights = list(ladder.foldHeight for ladder in cls.ladders)
 
         # create dictionary
@@ -24,14 +24,14 @@ class Shipment:
         #for index in range(len(foldHeights)):
             #laddersWithHeights.append((str(foldHeights[index]),str(cls.ladders[index].id))) 
             
-        laddersHeightsInEUR6pallets = binpacking.to_constant_volume(foldHeights, maxPackingHeight-palletHeight-wrappingHeight)
-        # e.g. ladderHeightsInEUR6pallets = [[1370, 138], [1370, 138], [666, 666], [666]]
-        print(len(laddersHeightsInEUR6pallets),'HALF PALLETS =',laddersHeightsInEUR6pallets)
-        cls.fromHeightsToLadders(laddersHeightsInEUR6pallets, cls.ladders)
+        laddersHeightsInEPALhalfpallets = binpacking.to_constant_volume(foldHeights, maxPackingHeight-palletHeight-wrappingHeight)
+        # e.g. ladderHeightsInEPALhalfpallets = [[1370, 138], [1370, 138], [666, 666], [666]]
+        print(len(laddersHeightsInEPALhalfpallets),'HALF PALLETS =',laddersHeightsInEPALhalfpallets)
+        cls.fromHeightsToLadders(laddersHeightsInEPALhalfpallets, cls.ladders)
             
     def fromHeightsToLadders(cls, heightLst, ladderLst):
         for p in heightLst:
-            palletN = EUR6pallet()
+            palletN = EPALhalfpallet()
             for height in p:
             # foldToLad = Ladder(0,0)
                 for ladder in ladderLst:
@@ -44,3 +44,11 @@ class Shipment:
         
     def balancePallets(cls):
         cls.pallets = cls.pallets
+
+    def getEPALdistribution(cls):
+        half = 0
+        for pallet in cls.packedPallets:
+            if(type(pallet)==EPALhalfpallet):
+                half = 1
+                break
+        return [len(cls.packedPallets),half]

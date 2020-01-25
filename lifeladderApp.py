@@ -78,18 +78,15 @@ printListOfLadders(sorted(orderInLadders))
 
 myShipment = Shipment(orderInLadders)
 
-printShipmentEURpallets(myShipment)
-
-
-
+printShipmentEPALpallets(myShipment)
 
 '''
-#printShipmentEUR6pallets(myShipment)
+#printShipmentEPALhalfpallets(myShipment)
 print('\n**********************************')
-print('* PAIRING pallets on EUR pallets *')
+print('* PAIRING pallets on EPAL pallets *')
 print('**********************************\n')
 
-printShipmentEURpallets(myShipment)
+printShipmentEPALpallets(myShipment)
 
 printShipment(myShipment)
 '''
