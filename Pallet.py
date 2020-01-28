@@ -28,7 +28,7 @@ class EPALhalfpallet(Pallet):
 class EPALpallet(Pallet): 
     
     def __init__(self, pallet1,pallet2):
-        self.id = str(pallet1.id)+'_'+str(pallet2.id)
+        self.id = getEPALpalletID()
         self.pallets = [pallet1, pallet2]
         self.ladders = pallet1.ladders + pallet2.ladders
         self.weight = pallet1.weight + pallet2.weight

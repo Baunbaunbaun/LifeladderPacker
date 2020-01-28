@@ -24,9 +24,8 @@ def printListOfLadders(lst):
 def printShipment(shipment):
     print('\n== SHIPMENT ==')
     # print('LADDERS:\t\t', len(shipment.ladders))
-    print('PALLETS (ALL):\t\t:',shipment.pallets)
     print('PALLETS (EPAL):\t\t', sum(1 for p in shipment.pallets if type(p)== EPALpallet))
-    print('PALLETS (EPALhalf):\t\t', sum(1 for p in shipment.pallets if type(p)== EPALhalfpallet))
+    print('PALLETS (EPALhalf):\t', sum(1 for p in shipment.pallets if type(p)== EPALhalfpallet))
     print('TOTAL WEIGHT:\t\t', round(shipment.totalWeight/1000),'KG\n')
 
 def printShipmentEPALhalfpallets(shipment):

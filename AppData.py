@@ -50,10 +50,17 @@ def getLadderID():
     ladderID += 1
     return newID
 
-# pallet ID generator
+# pallet ID generators
 palletID = 0
 def getPalletID():
     global palletID
     newID = palletID
     palletID += 1
+    return newID
+
+EPALpalletID = 0
+def getEPALpalletID():
+    global EPALpalletID
+    newID = EPALpalletID
+    EPALpalletID += 1
     return newID
