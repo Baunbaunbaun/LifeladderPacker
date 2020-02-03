@@ -33,24 +33,12 @@ printListOfLadders(sorted(orderInLadders))
 
 # create shipment 
 myShipment = Shipment(orderInLadders)
+# pair half pallets
+myShipment.pairEPALhalfpallets()
 
 printShipment(myShipment)
 
 printShipmentEPALhalfpallets(myShipment)
 
 printShipmentEPALpallets(myShipment)
-
-
-
-
-'''
-#printShipmentEPALhalfpallets(myShipment)
-print('\n**********************************')
-print('* PAIRING pallets on EPAL pallets *')
-print('**********************************\n')
-
-printShipmentEPALpallets(myShipment)
-
-printShipment(myShipment)
-'''
 

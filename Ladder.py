@@ -14,6 +14,7 @@ class Ladder:
         self.foldHeight = self.calcFoldHeight(length)
         self.brackets = self.calcBrackets(length)   
         self.weight = self.calcWeight(self)
+        self.odd = (self.modules%2)==1
         if(self.length==0):
             self.weight = 0
             self.foldHeight = 0

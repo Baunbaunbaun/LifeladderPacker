@@ -1,7 +1,7 @@
 # imports
 from AppData import maxPackingHeight, palletHeight, wrappingHeight
 #from Calculations import pairEPALhalfpallets
-from Pallet import EPALhalfpallet
+from Pallet import EPALhalfpallet, EPALpallet
 import binpacking
 
 # Shipment object
@@ -23,8 +23,6 @@ class Shipment:
         foldHeights = list(ladder.foldHeight for ladder in cls.ladders)
         # use binpacking library
         laddersHeightsInEPALhalfpallets = binpacking.to_constant_volume(foldHeights, maxPackingHeight-palletHeight-wrappingHeight)
-        # e.g. ladderHeightsInEPALhalfpallets = [[1370, 138], [1370, 138], [666, 666], [666]]
-        print(len(laddersHeightsInEPALhalfpallets),'HALF PALLETS =',laddersHeightsInEPALhalfpallets)
         cls.fromHeightsToLadders(laddersHeightsInEPALhalfpallets, cls.ladders)
             
     def fromHeightsToLadders(cls, heightLst, ladderLst):
@@ -44,36 +42,32 @@ class Shipment:
         cls.pallets = cls.pallets
 
     def getEPALdistribution(cls):
-        half = 0
-        for pallet in cls.packedPallets:
-            if(type(pallet)==EPALhalfpallet):
-                half = 1
-                break
-        return [len(cls.packedPallets)-half,half]
+        half = len(cls.pallets)%2
+        return [len(cls.packedPallets)-half, half]
     
     # merge EPALhalfpallets to EPALpallets
-    def pairEPALhalfpallets(cls): # e.g. [1600, 1200, 1700, 1700] in mm
-        palletLstCopy = cls.palletLst
-        heights = list(pallet.height for pallet in cls.palletLst)
+    def pairEPALhalfpallets(cls):
+        palletsCopy = cls.pallets
+        heights = list(pallet.height for pallet in palletsCopy)
         heights = sorted(heights)
-        
+        palletsCopy = sorted(palletsCopy)
         resultPallets = []
         
-        def calcDifferenceBetweenpallets(palletLst):
+        def calcDifferenceBetweenpallets(pallets):
             lst = []
-            for i in range(len(palletLst)-1):
-                lst.append(abs(palletLst[i]-palletLst[i+1]))            
+            for i in range(len(pallets)-1):
+                lst.append(abs(pallets[i]-pallets[i+1]))            
             return lst
         
-        while(len(cls.palletLst)>1):
+        while(len(palletsCopy)>1):
             diffLst = calcDifferenceBetweenpallets(heights)
             index = diffLst.index(min(diffLst))
-            resultPallets.append(EPALpallet(palletLst.pop(index), palletLst.pop(index)))
+            resultPallets.append(EPALpallet(palletsCopy.pop(index), palletsCopy.pop(index)))
             heights.pop(index)
             heights.pop(index)
-        if(len(cls.palletLst)==1):
-            resultPallets.append(cls.palletLst.pop())
-        cls.packedPalletc = resultPallets 
+        if(len(palletsCopy)==1):
+            resultPallets.append(palletsCopy.pop())
+        cls.packedPallets = resultPallets 
     
     def calcNewPackingWithBestEvenOddDistribution(cls):
         '''

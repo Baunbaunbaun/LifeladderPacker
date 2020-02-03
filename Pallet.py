@@ -23,6 +23,9 @@ class EPALhalfpallet(Pallet):
         cls.ladders.append(ladder)
         cls.weight += ladder.weight
         cls.height += ladder.foldHeight
+    
+    def __lt__(cls, other):
+        return (cls.height < cls.height)
 
 # twice the size of EPALhalfpallet
 class EPALpallet(Pallet): 
