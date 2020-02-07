@@ -43,7 +43,7 @@ medium = 1
 large = 2
 
 # ladder ID generator
-ladderID = 0
+ladderID = 1
 def getLadderID():
     global ladderID
     newID = ladderID
@@ -51,14 +51,14 @@ def getLadderID():
     return newID
 
 # pallet ID generators
-palletID = 0
+palletID = 1
 def getPalletID():
     global palletID
     newID = palletID
     palletID += 1
     return newID
 
-EPALpalletID = 0
+EPALpalletID = 1
 def getEPALpalletID():
     global EPALpalletID
     newID = EPALpalletID

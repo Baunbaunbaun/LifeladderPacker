@@ -4,7 +4,7 @@
 # Code by Christian Baun 
 # baunbaun@gmail.com
 # Lifeladder packing for PortS
-# July 2019 - Feb 2020
+# July 2019 - March 2020
 
 from Calculations import createListOfLadders
 from sys import exit
@@ -13,19 +13,7 @@ from Shipment import Shipment
 import dialogue
 
 # # APPLICATION # #
-
-# clear screen
-dialogue.clear()
-
-print('\n\n********************************')
-print('****** LIFELADDER PACKING ******')
-print('********************************\n')
-
-# ask for new height
-dialogue.inputNewMaxHeightDialogue()
-    
-# ask for ladders
-orderInNumbers = dialogue.inputLaddersDialogue()
+orderInNumbers = dialogue.run()
 orderInLadders = createListOfLadders(orderInNumbers)
 
 # print ordered ladders
