@@ -38,9 +38,8 @@ def run():
                 del(orderInNumbers[-1])
                 print('\nPresent order list:\t\t',orderInNumbers,'\n')
                 continue
-            elif(userInput in ['restart','R']):
-                run()
-                break
+            elif(userInput in ['restart','R']):                
+                return run()
             else: 
                 ladderOrder = checkAndCastInput(userInput)
             
@@ -95,5 +94,5 @@ def run():
     print('********************************\n')
 
     inputNewMaxHeightDialogue()
-
-    return inputLaddersDialogue()
+    output = inputLaddersDialogue()
+    return output
