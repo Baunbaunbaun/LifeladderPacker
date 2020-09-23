@@ -4,7 +4,7 @@
 # Code by Christian Baun 
 # baunbaun@gmail.com
 # Lifeladder packing for PortS
-# July 2019 - March 2020
+# July 2019 - September 2020
 
 from Calculations import createListOfLadders
 from sys import exit

@@ -1,28 +1,18 @@
-"""
-from datetime import datetime
-from tkinter import filedialog
-import os
-from tkinter import *
+import PySimpleGUI as sg
 
-root = Tk()
-root.filename =  filedialog.asksaveasfilename(initialdir = "/",title = "Select file",filetypes = (("jpeg files","*.jpg"),("all files","*.*")))
-print (root.filename)
+sg.theme('DarkAmber')   # Add a touch of color
+# All the stuff inside your window.
+layout = [  [sg.Text('Some text on Row 1')],
+            [sg.Text('Enter something on Row 2'), sg.InputText()],
+            [sg.Button('Ok'), sg.Button('Cancel')] ]
 
-def saveFile(content, type):
-    os.chdir('/Users/baunbaun/desktop')
-    title = type+'-'+str(datetime.now())[:19]
-    title = title.replace(":","h",1)
-    title = title.replace(":","m",1)
-    title = title+"s"
-    title += '.txt'
-    print(title)
-    f = open(title, "x")
-    f.write(content)
-    f.close()
+# Create the Window
+window = sg.Window('Window Title', layout)
+# Event Loop to process "events" and get the "values" of the inputs
+while True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
+        break
+    print('You entered ', values[0])
 
-
-filedialog.asksaveasfile()
-"""
-
-#saveFile('chr er god','pack')
-#saveFile('chr er god','freight')
+window.close()

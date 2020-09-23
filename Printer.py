@@ -27,7 +27,7 @@ def printListOfLadders(lst):
         printLadder(l)
 
 def printShipment(shipment):
-    print('\n== SHIPMENT ==')
+    print('\n== PRELIMINARY SHIPMENT DETAILS ==')
     # print('LADDERS:\t\t', len(shipment.ladders))
     print('PALLETS (EPAL):\t\t', sum(1 for p in shipment.pallets if type(p)== EPALpallet))
     print('PALLETS (EPALhalf):\t', sum(1 for p in shipment.pallets if type(p)== EPALhalfpallet))
