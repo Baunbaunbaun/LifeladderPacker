@@ -10,11 +10,11 @@ from Calculations import createListOfLadders
 from sys import exit
 from Printer import *
 from Shipment import Shipment
-import dialogue
-from guietta import Gui, _
+import Dialogue
+from UI import showOutput
 
 # # APPLICATION # #
-orderInNumbers = dialogue.run()
+orderInNumbers = Dialogue.run()
 orderInLadders = createListOfLadders(orderInNumbers)
 
 # print ordered ladders
@@ -25,27 +25,11 @@ myShipment = Shipment(orderInLadders)
 # pair half pallets
 myShipment.pairEPALhalfpallets()
 
+# print meta data
 printShipment(myShipment)
 
 printShipmentEPALhalfpallets(myShipment)
 
 printShipmentEPALpallets(myShipment)
 
-gui = Gui(
-            ['ladderStr0', 'ladderStr1', 'ladderStr2'],
-            ['ladderStr3', 'ladderStr4', 'ladderStr5']
-         )   
-
-#gui.widgets[1]  = stringBuildPallet(myShipment.packedPallets[0])
-#gui.ladderStr2  = stringBuildPallet(myShipment.packedPallets[1])
-#gui.ladderStr3  = stringBuildPallet(myShipment.packedPallets[2])
-
-index = len(myShipment.packedPallets)-1
-while index >= 0:
-    strIndex = 'ladderStr' + str(index)
-    print(type(gui.widgets[strIndex]))
-    gui.widgets[strIndex].setText(stringBuildPallet(myShipment.packedPallets[index]))
-    index = index - 1
-
-gui.run()
-
+showOutput(myShipment)
