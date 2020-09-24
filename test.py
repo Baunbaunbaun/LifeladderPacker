@@ -17,6 +17,7 @@ subgui.Andhere = lambda x: QMessageBox.information(None, "Clicked",
 with main.Clickhere:
     if main.is_running:
         main.label3 = subgui
+        main.label1 = 'new line test \n \t next line'
 
 
 main.run()

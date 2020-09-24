@@ -25,28 +25,27 @@ def userInterface():
                   [ 'Max packing height:'   , '__maxHeight__'       , 'm'   , _                 , _             , _             ],
                   [ _                       , _                     , _     , _                 , _             , _                     ],
                   [ _                       , 'Length'              , _     , 'LightUnit'       , 'Volume'      , _                     ],
-                  [ 'LifeLadder type 1:'    , '__length1__'         , 'm'   , C('lightUnit1')  , '__volumen1__', 'Pcs.'                ],
-                  [ ['moreLadderTypes']     , _                     , _     , _                 , _             , _         ],
-                  [ ['clear']               , _                     , _     , _                 , _             , ['calculate']         ],
-                  [ 'Max height is:'        , '__maxHeight__'       , _     , _                 , _             , Quit                  ]
-                )
-
-        guiOutput = Gui(
-                  [ 'output ladders here ...'                   ]
+                  [ 'LifeLadder type 1:'    , '__length1__'         , 'm'   , C('lightUnit1')  , '__volumen1__' , 'Pcs.'                 ],
+                  [ ['moreLadderTypes']     , _                     , _     , _                 , _             , _                     ],
+                  [ ['clear']               , _                     , _     , _                 , _             , ['pack']         ],
+                  [ 'Max height is:'        , '__maxHeight__'       , _     , _                 , _             , Quit                  ],
+                  [ 'Packing result'        , _                     , _     , _                 , _             , Quit                  ]
                 )
         
-                
+        subgui = Gui( [C('checkbox'), '__editbox__'] )
+
         guiInput.widgets['clear'].setText('Clear all input')
         guiInput.widgets['lightUnit1'].setText('')
-        guiInput.widgets['calculate'].setText('Calculate packing')
+        guiInput.widgets['pack'].setText('Pack LifeLadders')
         guiInput.maxHeight = maxPackingHeight
 
         
         #gui.widgets['lightUnit1']
 
-        #with gui.calculate:
-         #   gui.newMaxHeight = int(gui.maxHeight)
-        
+        with guiInput.pack:
+            if guiInput.is_running:
+                guiInput.Packingresult = 'LADDERS OUTPUT'
+
         with guiInput.clear:
             guiInput.maxHeight = 1800
             guiInput.length1 = 0
