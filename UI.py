@@ -1,4 +1,5 @@
-from guietta import Gui, _
+from guietta import Gui, _, HSeparator, C, R, ___, III, QMessageBox, Quit
+from AppData import maxPackingHeight
 
 def showOutput(myShipment):
     gui = Gui(
@@ -10,7 +11,6 @@ def showOutput(myShipment):
     index = len(myShipment.packedPallets)-1
     while index >= 0:
         strIndex = 'ladderStr' + str(index)
-        print(type(gui.widgets[strIndex]))
         gui.widgets[strIndex].setText(stringBuildPallet(myShipment.packedPallets[index]))
         index = index - 1
 
@@ -43,3 +43,48 @@ def stringBuildPallet(pallet):
         for ladder in reversed(pallet.ladders): 
             stringPallet = stringPallet + str(ladder.length/1000) + ' m' + '\n'
         return stringPallet + '====='
+
+def inputDialogue():
+        
+    global maxPackingHeight 
+
+    guiInput = Gui(
+        [ 'Max packing height:'   , '__maxHeight__'       , 'm'   , _                 , _             , _               , _    ],
+        [ _                       , _                     , _     , _                 , _             , _               , _    ],
+        [ _                       , 'Length'              , _     , 'Add LightUnit'   , _             , 'Volume'        , _    ],
+        [ 'LifeLadder type 1:'    , '__length1__'         , 'm'   , C('addLightUnit1'), _             , '__volumen1__' , 'Pcs.'],
+        [ _                       , _                     , _     , _                 , _             , _               , _    ],
+        [ 'light1'                , _                     , _     , _                 , _             , Quit            , _    ]
+                )
+        
+    guiInput.widgets['Quit'].setText('Output packing')
+    guiInput.widgets['addLightUnit1'].setText('')
+    guiInput.widgets['light1'].setText('')
+    guiInput.light = 0
+    #guiInput.widgets['pack'].setText('Pack LifeLadders')
+    guiInput.maxHeight = maxPackingHeight
+    
+    with guiInput.addLightUnit1:
+        if guiInput.is_running:
+            guiInput.light1 = 1
+
+    """
+    with guiInput.pack:
+        if guiInput.is_running:
+            guiPallets = Gui(   ['Volumen:'    , guiInput.volumen1], 
+                                ['Length:'     , guiInput.length1],
+                                ['LightUnit:'  , guiInput.light1],
+                                ['Max packing height:',guiInput.maxHeight] 
+                            )
+
+            guiPallets.run()
+    """
+
+    guiInput.run()
+
+    ladderOrder1 = [int(guiInput.volumen1), int(float(guiInput.length1)*1000), int(guiInput.light1)]
+    orderInNumbers = [ladderOrder1]    
+    
+    return orderInNumbers
+
+

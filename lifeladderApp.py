@@ -11,10 +11,11 @@ from sys import exit
 from Printer import *
 from Shipment import Shipment
 import Dialogue
-from UI import showOutput
+import UI
 
 # # APPLICATION # #
-orderInNumbers = Dialogue.run()
+orderInNumbers = UI.inputDialogue()
+#orderInNumbers = Dialogue.run()
 orderInLadders = createListOfLadders(orderInNumbers)
 
 # print ordered ladders
@@ -32,4 +33,4 @@ printShipmentEPALhalfpallets(myShipment)
 
 printShipmentEPALpallets(myShipment)
 
-showOutput(myShipment)
+UI.showOutput(myShipment)
