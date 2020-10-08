@@ -1,5 +1,5 @@
 # imports
-from AppData import *
+from  AppData import *
 # pallet parent object
 class Pallet: 
     pass

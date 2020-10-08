@@ -1,5 +1,5 @@
-# LifeladderPacking
-In the LifeladderPacking app you can create LADDERS by telling amount, length and number of light units.  
+# LifeLadderPacking
+In the LifeLadderPacking app you can create LADDERS by telling amount, length and number of light units.  
 
 When you have a list of ladders you can create a SHIPMENT which is a collection of packed pallets.   
 
@@ -22,11 +22,11 @@ Once Python has completed the downloading and installation process, open Windows
 
 The Microsoft Store installation of Python includes pip, the standard package manager. Pip allows you to install and manage additional packages that are not part of the Python standard library. To confirm that you also have pip available to install and manage packages, enter pip --version.
 
-B - Open your terminal and go to folder 'LifeladderPacking-UAT'
+B - Open your terminal and go to folder 'LifeLadderPacking-UAT'
 
 C – Run the below commands in your terminal
 
-This installs an important package for LifeladderPacking
+This installs an important package for LifeLadderPacking
 >pip install binpacking
 
 D - Run application

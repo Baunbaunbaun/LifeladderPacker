@@ -1,5 +1,5 @@
 from guietta import Gui, _, HSeparator, C, R, ___, III, QMessageBox, Quit
-from AppData import maxPackingHeight
+from  AppData import maxPackingHeight
 
 def showOutput(myShipment):
     gui = Gui(

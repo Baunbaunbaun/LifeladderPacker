@@ -14,23 +14,27 @@ import Dialogue
 import UI
 
 # # APPLICATION # #
-orderInNumbers = UI.inputDialogue()
+#orderInNumbers = UI.inputDialogue()
 #orderInNumbers = Dialogue.run()
-orderInLadders = createListOfLadders(orderInNumbers)
 
-# print ordered ladders
-printListOfLadders(sorted(orderInLadders))
+def ladderLogic(lst):
+    orderInLadders = createListOfLadders(lst)
 
-# create shipment 
-myShipment = Shipment(orderInLadders)
-# pair half pallets
-myShipment.pairEPALhalfpallets()
+    # print ordered ladders
+    printListOfLadders(sorted(orderInLadders))
 
-# print meta data
-printShipment(myShipment)
+    # create shipment 
+    myShipment = Shipment(orderInLadders)
+    # pair half pallets
+    myShipment.pairEPALhalfpallets()
 
-printShipmentEPALhalfpallets(myShipment)
+    # print meta data
+    printShipment(myShipment)
 
-printShipmentEPALpallets(myShipment)
+    printShipmentEPALhalfpallets(myShipment)
 
-UI.showOutput(myShipment)
+    printShipmentEPALpallets(myShipment)
+
+    UI.showOutput(myShipment)
+
+#ladderLogic()

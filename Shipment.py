@@ -1,7 +1,7 @@
 # imports
-from AppData import maxPackingHeight, palletHeight, wrappingHeight
+from  AppData import maxPackingHeight, palletHeight, wrappingHeight
 #from Calculations import pairEPALhalfpallets
-from Pallet import EPALhalfpallet, EPALpallet
+from  Pallet import EPALhalfpallet, EPALpallet
 import binpacking
 
 # Shipment object
