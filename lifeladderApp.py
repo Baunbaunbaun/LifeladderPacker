@@ -35,6 +35,8 @@ def ladderLogic(lst):
 
     printShipmentEPALpallets(myShipment)
 
-    UI.showOutput(myShipment)
+    #UI.showOutput(myShipment)
+
+    return myShipment
 
 #ladderLogic()

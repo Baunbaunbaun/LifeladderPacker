@@ -1,6 +1,7 @@
 from flask import Flask, request
 from datetime import datetime
 from lifeladderApp import ladderLogic
+from UI import palletsInShipmentAsOneString
 import os
 
 app = Flask(__name__)
@@ -27,14 +28,17 @@ def greet():
     lights = (lights == 'on') ; 1, 0
 
     order = [[int(amount), int(length), lights]]
-    ladderLogic(order)
+    myShipment = ladderLogic(order)
+    palletsString = palletsInShipmentAsOneString(myShipment)
+    palletsString = palletsString.replace('\n', '<br>')
 
     return """
         <html><body>
-            <h2>You are packing {0} LifeLadders of length {1} and LightUnits = {2}!</h2>
-            
+            You are packing <b>{0}</b> LifeLadders of length <b>{1}</b><br> 
+            LightUnits included? <b>{2}</b><br><br>
+            {3}
         </body></html>
-        """.format(amount, length, lights)
+        """.format(amount, length, lights, palletsString)
 
 # Launch the FlaskPy dev server
 app.run(host="localhost", debug=True)

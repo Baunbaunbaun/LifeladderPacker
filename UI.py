@@ -1,5 +1,6 @@
 from guietta import Gui, _, HSeparator, C, R, ___, III, QMessageBox, Quit
 from  AppData import maxPackingHeight
+from math import ceil
 
 def showOutput(myShipment):
     gui = Gui(
@@ -37,12 +38,12 @@ def stringBuildPallet(pallet):
             stringPallet = stringPallet + str(longLadderList[index].length/1000) + ' m  ' + str(shortLadderList[index].length/1000) + ' m\n'
             index = index-1
 
-        return stringPallet + '=========='
+        return stringPallet + '==========\nweight(kg): ' + str(ceil(pallet.weight/1000)) + ' height(m):' + str(pallet.height/1000)
     else:
         stringPallet = 'Half Pallet ' + str(pallet.id) + ':\n\n'
         for ladder in reversed(pallet.ladders): 
             stringPallet = stringPallet + str(ladder.length/1000) + ' m' + '\n'
-        return stringPallet + '====='
+        return stringPallet + '=====\nweight(kg): ' + str(ceil(pallet.weight/1000)) + ' height(m):' + str(pallet.height/1000)
 
 def inputDialogue():
         
@@ -87,4 +88,10 @@ def inputDialogue():
     
     return orderInNumbers
 
+def palletsInShipmentAsOneString(myShipment):
+    out = ''
+    for pallet in myShipment.packedPallets:
+        out = out + stringBuildPallet(pallet) + '\n\n'
+    return out
+        
 
