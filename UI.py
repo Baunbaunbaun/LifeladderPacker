@@ -38,12 +38,12 @@ def stringBuildPallet(pallet):
             stringPallet = stringPallet + str(longLadderList[index].length/1000) + ' m  ' + str(shortLadderList[index].length/1000) + ' m\n'
             index = index-1
 
-        return stringPallet + '==========\nweight(kg): ' + str(ceil(pallet.weight/1000)) + ' height(m):' + str(pallet.height/1000)
+        return stringPallet + '==========\nweight(kg): ' + str(ceil(pallet.weight/1000)) + ' height(m):' + str(round(pallet.height/1000,2))
     else:
         stringPallet = 'Half Pallet ' + str(pallet.id) + ':\n\n'
         for ladder in reversed(pallet.ladders): 
             stringPallet = stringPallet + str(ladder.length/1000) + ' m' + '\n'
-        return stringPallet + '=====\nweight(kg): ' + str(ceil(pallet.weight/1000)) + ' height(m):' + str(pallet.height/1000)
+        return stringPallet + '=====\nweight(kg): ' + str(ceil(pallet.weight/1000)) + ' height(m):' + str(round(pallet.height/1000,2))
 
 def inputDialogue():
         
