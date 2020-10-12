@@ -2,9 +2,7 @@ from AppData import maxPackingHeight
 from os import system, name 
 import re
 
-
 def run():
-
 
     def inputNewMaxHeightDialogue():
         print('\n************ new max height? *************\n')    

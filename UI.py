@@ -1,25 +1,9 @@
-from guietta import Gui, _, HSeparator, C, R, ___, III, QMessageBox, Quit
-from  AppData import maxPackingHeight
 from math import ceil
-
-def showOutput(myShipment):
-    gui = Gui(
-                ['ladderStr0', 'ladderStr1', 'ladderStr2'],
-                ['ladderStr3', 'ladderStr4', 'ladderStr5'],
-                ['ladderStr6', 'ladderStr7', 'ladderStr8']
-            )   
-
-    index = len(myShipment.packedPallets)-1
-    while index >= 0:
-        strIndex = 'ladderStr' + str(index)
-        gui.widgets[strIndex].setText(stringBuildPallet(myShipment.packedPallets[index]))
-        index = index - 1
-
-    gui.run()
+from Pallet import EPALhalfpallet, EPALpallet
 
 def stringBuildPallet(pallet):
     if len(pallet.pallets) == 2:
-        stringPallet = 'Pallet ' + str(pallet.id) + ':\n\n'
+        stringPallet = '<h3>Pallet ' + str(pallet.id) + ':</h3>'
         
         if len(pallet.pallets[0].ladders) > len(pallet.pallets[1].ladders):
             longLadderList = pallet.pallets[0].ladders
@@ -31,65 +15,26 @@ def stringBuildPallet(pallet):
 
 
         while index >= len(shortLadderList):
-            stringPallet = stringPallet + str(longLadderList[index].length/1000) + ' m\n'
+            stringPallet = stringPallet + str(longLadderList[index].length/1000) + ' m.\n'
             index = index-1
 
         while index >= 0:
-            stringPallet = stringPallet + str(longLadderList[index].length/1000) + ' m  ' + str(shortLadderList[index].length/1000) + ' m\n'
+            stringPallet = stringPallet + str(longLadderList[index].length/1000) + ' m.  ' + str(shortLadderList[index].length/1000) + ' m.\n'
             index = index-1
 
-        return stringPallet + '==========\nweight(kg): ' + str(ceil(pallet.weight/1000)) + ' height(m):' + str(round(pallet.height/1000,2))
+        return stringPallet + '==========\nWeight:\t' + str(ceil(pallet.weight/1000)) + ' kg.\nHeight:\t' + str(round(pallet.height/1000,2)) + ' m.' 
     else:
         stringPallet = 'Half Pallet ' + str(pallet.id) + ':\n\n'
         for ladder in reversed(pallet.ladders): 
-            stringPallet = stringPallet + str(ladder.length/1000) + ' m' + '\n'
-        return stringPallet + '=====\nweight(kg): ' + str(ceil(pallet.weight/1000)) + ' height(m):' + str(round(pallet.height/1000,2))
-
-def inputDialogue():
-        
-    global maxPackingHeight 
-
-    guiInput = Gui(
-        [ 'Max packing height:'   , '__maxHeight__'       , 'm'   , _                 , _             , _               , _    ],
-        [ _                       , _                     , _     , _                 , _             , _               , _    ],
-        [ _                       , 'Length'              , _     , 'Add LightUnit'   , _             , 'Volume'        , _    ],
-        [ 'LifeLadder type 1:'    , '__length1__'         , 'm'   , C('addLightUnit1'), _             , '__volumen1__' , 'Pcs.'],
-        [ _                       , _                     , _     , _                 , _             , _               , _    ],
-        [ 'light1'                , _                     , _     , _                 , _             , Quit            , _    ]
-                )
-        
-    guiInput.widgets['Quit'].setText('Output packing')
-    guiInput.widgets['addLightUnit1'].setText('')
-    guiInput.widgets['light1'].setText('')
-    guiInput.light = 0
-    #guiInput.widgets['pack'].setText('Pack LifeLadders')
-    guiInput.maxHeight = maxPackingHeight
+            stringPallet = stringPallet + str(ladder.length/1000) + ' m.\n'
+        return stringPallet + '=====\nWeight:\t' + str(ceil(pallet.weight/1000)) + ' kg.\nHeight:\t' + str(round(pallet.height/1000,2)) + ' m.'  
     
-    with guiInput.addLightUnit1:
-        if guiInput.is_running:
-            guiInput.light1 = 1
-
-    """
-    with guiInput.pack:
-        if guiInput.is_running:
-            guiPallets = Gui(   ['Volumen:'    , guiInput.volumen1], 
-                                ['Length:'     , guiInput.length1],
-                                ['LightUnit:'  , guiInput.light1],
-                                ['Max packing height:',guiInput.maxHeight] 
-                            )
-
-            guiPallets.run()
-    """
-
-    guiInput.run()
-
-    ladderOrder1 = [int(guiInput.volumen1), int(float(guiInput.length1)*1000), int(guiInput.light1)]
-    orderInNumbers = [ladderOrder1]    
-    
-    return orderInNumbers
-
 def palletsInShipmentAsOneString(myShipment):
-    out = ''
+    EPALs = str(sum(1 for p in myShipment.packedPallets if type(p)== EPALpallet)) + ' x EUR Pallet'
+    EPALhalfs = str(sum(1 for p in myShipment.packedPallets if type(p)== EPALhalfpallet)) + ' x EUR Half Pallet'
+
+    out = 'Number of pallets:\t' + EPALs + '\n\t\t' + EPALhalfs + '\n\nTotal weight:\t' + str(ceil(myShipment.totalWeight/1000)) + ' kg.\n\n'
+    
     for pallet in myShipment.packedPallets:
         out = out + stringBuildPallet(pallet) + '\n\n'
     return out

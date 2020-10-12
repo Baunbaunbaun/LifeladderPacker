@@ -1,5 +1,5 @@
 # imports
-import math
+from math import floor
 from AppData import *
 
 class Ladder:
@@ -18,7 +18,7 @@ class Ladder:
         if(self.length==0):
             self.weight = 0
             self.foldHeight = 0
-        
+    
     @classmethod
     def create(cls, length, lights):
         if(cls.lengthIsLegal(length)):
@@ -29,6 +29,7 @@ class Ladder:
     def __lt__(self, other):
         return (self.foldHeight < other.foldHeight)
     
+    @staticmethod
     def lengthIsLegal(length):
         if(length<=0 or 
             length>maxLadderLength or 
@@ -42,9 +43,9 @@ class Ladder:
     def calcFoldHeight(length):
         nrModules = int(length/moduleLength)
         # first iteration of foldHeight (73mm)
-        res1 = addedFoldHeight[0] * math.floor((nrModules+1)/4)
+        res1 = addedFoldHeight[0] * floor((nrModules+1)/4)
         # second iteration of foldHeight (103mm)
-        res2 = addedFoldHeight[1] * math.floor((nrModules-1)/4)
+        res2 = addedFoldHeight[1] * floor((nrModules-1)/4)
         return intitialFoldHeight + res1 + res2
 
     # calc number of brackets to include

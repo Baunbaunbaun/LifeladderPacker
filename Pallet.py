@@ -15,17 +15,17 @@ class EPALhalfpallet(Pallet):
         self.weight = EPALhalfpalletWeight # sum(ladder.weight for ladder in ladderLst)
         self.height = palletHeight # sum(ladder.foldHeight for ladder in ladderLst)
 
-    def amend(cls, itemLst):
-        cls.weight += sum(item.weight for item in itemLst)
-        cls.height += sum(item.height for item in itemLst)
+    def amend(self, itemLst):
+        self.weight += sum(item.weight for item in itemLst)
+        self.height += sum(item.height for item in itemLst)
     
-    def addLadder(cls, ladder):
-        cls.ladders.append(ladder)
-        cls.weight += ladder.weight
-        cls.height += ladder.foldHeight
+    def addLadder(self, ladder):
+        self.ladders.append(ladder)
+        self.weight += ladder.weight
+        self.height += ladder.foldHeight
     
-    def __lt__(cls, other):
-        return (cls.height < cls.height)
+    def __lt__(self, other):
+        return (self.height < self.height)
 
 # twice the size of EPALhalfpallet
 class EPALpallet(Pallet): 

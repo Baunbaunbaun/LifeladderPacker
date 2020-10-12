@@ -22,4 +22,3 @@ def dimensionsFormatter(pallet):
     else: 
         dim = [palletWidth/1000, EPALpalletLength/1000, pallet.height/1000] 
     return str(round(dim[0],1))+' X '+str(round(dim[1],1))+' X '+str(round(dim[2],1))
-    
