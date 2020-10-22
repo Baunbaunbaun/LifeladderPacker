@@ -12,9 +12,6 @@ ADD /dist/lifeladderpacking-1.0.0-py3-none-any.whl .
 RUN pip install /lifeladderpacking-1.0.0-py3-none-any.whl
 ADD requirements.txt .
 RUN python -m pip install -r requirements.txt
-#RUN export FLASK_APP=lifeladderpacking
-
-# ryk til .. og kør python setup.py bdist_wheel
 
 WORKDIR /app
 ADD . /app
@@ -25,4 +22,3 @@ USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 CMD ["waitress-serve", "--call", "lifeladderpacking:create_app"]
-#CMD ["flask", "run"]

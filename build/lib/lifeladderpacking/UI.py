@@ -1,5 +1,5 @@
 from math import ceil
-from  Pallet import EPALhalfpallet, EPALpallet
+from lifeladderpacking.Pallet import EPALhalfpallet, EPALpallet
 
 def stringBuildPallet(pallet):
     if len(pallet.pallets) == 2:

@@ -6,8 +6,8 @@
 # Lifeladder packing for PortS
 # July 2019 - October 2020
 
-from  Calculations import createListOfLadders
-from  Shipment import Shipment
+from lifeladderpacking.Calculations import createListOfLadders
+from lifeladderpacking.Shipment import Shipment
 #from Printer import *
 
 def ladderLogic(lst):

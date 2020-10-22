@@ -1,7 +1,7 @@
 # imports
-from  AppData import *
-from  Ladder import Ladder
-from  Pallet import *
+from  lifeladderpacking.AppData import *
+from  lifeladderpacking.Ladder import Ladder
+from  lifeladderpacking.Pallet import *
 
 def createListOfLadders(order):
     ladderLst = []

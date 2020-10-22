@@ -1,5 +1,5 @@
 # imports
-from  AppData import *
+from  lifeladderpacking.AppData import *
 # pallet parent object
 class Pallet: 
     pass
