@@ -22,12 +22,12 @@ def stringBuildPallet(pallet):
             stringPallet = stringPallet + str(longLadderList[index].length/1000) + ' m.  ' + str(shortLadderList[index].length/1000) + ' m.\n'
             index = index-1
 
-        return stringPallet + '==========\nWeight:\t' + str(ceil(pallet.weight/1000)) + ' kg.\nHeight:\t' + str(round(pallet.height/1000,2)) + ' m.' 
+        return stringPallet + '==========\nWeight:\t' + str(ceil(pallet.weight/1000)) + ' kg.\nHeight:\t' + str(round(pallet.height/1000,2)) + ' m.\nLightUnits:\t' + str(pallet.lights)
     else:
         stringPallet = 'Half Pallet ' + str(pallet.id) + ':\n\n'
         for ladder in reversed(pallet.ladders): 
             stringPallet = stringPallet + str(ladder.length/1000) + ' m.\n'
-        return stringPallet + '=====\nWeight:\t' + str(ceil(pallet.weight/1000)) + ' kg.\nHeight:\t' + str(round(pallet.height/1000,2)) + ' m.'  
+        return stringPallet + '=====\nWeight:\t' + str(ceil(pallet.weight/1000)) + ' kg.\nHeight:\t' + str(round(pallet.height/1000,2)) + ' m.\nLightUnits:\t' + str(pallet.lights)
     
 def palletsInShipmentAsOneString(myShipment):
     EPALs = str(sum(1 for p in myShipment.packedPallets if type(p)== EPALpallet)) + ' x EUR Pallet'

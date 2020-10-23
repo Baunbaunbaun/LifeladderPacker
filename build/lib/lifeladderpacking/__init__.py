@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, Markup
 
 from datetime import datetime
 from lifeladderpacking.lifeladderApp import ladderLogic
@@ -28,7 +28,7 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/')
     def home():
-        return render_template("/lifeladderpacking/index.html") 
+        return render_template("/index.html") 
 
     @app.route('/pack')
     def pack():
@@ -40,14 +40,8 @@ def create_app(test_config=None):
         order = [[amount, int(length*1000), lights]]
         myShipment = ladderLogic(order)
         palletsString = palletsInShipmentAsOneString(myShipment)
-        palletsString = palletsString.replace('\n', '<br>')
+        palletsString = Markup(palletsString.replace('\n', '<br>'))
 
-        return """
-            <html><body>
-                You are packing <b>{0}</b> LifeLadders&reg; of length <b>{1}</b> meters<br> 
-                LightUnits included? <b>{2}</b><br><br>
-                {3}
-            </body></html>
-            """.format(amount, length, lights, palletsString)
+        return render_template('pack.html', **locals())
 
     return app
