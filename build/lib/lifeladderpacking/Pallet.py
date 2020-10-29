@@ -14,6 +14,7 @@ class EPALhalfpallet(Pallet):
         self.ladders = [] # ladderLst
         self.weight = EPALhalfpalletWeight # sum(ladder.weight for ladder in ladderLst)
         self.height = palletHeight # sum(ladder.foldHeight for ladder in ladderLst)
+        self.lights = 0
 
     def amend(self, itemLst):
         self.weight += sum(item.weight for item in itemLst)
@@ -23,6 +24,7 @@ class EPALhalfpallet(Pallet):
         self.ladders.append(ladder)
         self.weight += ladder.weight
         self.height += ladder.foldHeight
+        self.lights += ladder.lightUnits
     
     def __lt__(self, other):
         return (self.height < self.height)
@@ -36,6 +38,7 @@ class EPALpallet(Pallet):
         self.ladders = pallet1.ladders + pallet2.ladders
         self.weight = pallet1.weight + pallet2.weight
         self.height = max(pallet1.height,pallet2.height)
+        self.lights = pallet1.lights + pallet2.lights
     
     # create class method to balance all ladders on the EPALpallet
     # So we dont have odd ladders in the bottom  

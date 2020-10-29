@@ -32,13 +32,16 @@ def create_app(test_config=None):
 
     @app.route('/pack')
     def pack():
-        amount = int(request.args.get('amount'))    
-        length = float(request.args.get('length'))    
-        lights = request.args.get('lights')
-        lights = (lights == 'on') ; 1, 0
+        order1 = [int(request.args.get('amount1')), int(float(request.args.get('length1'))*1000)]
+        lights1 = (request.args.get('lights1') == 'on') ; 1, 0
+        order1.append(lights1)
 
-        order = [[amount, int(length*1000), lights]]
-        myShipment = ladderLogic(order)
+        order2 = [int(request.args.get('amount2')), int(float(request.args.get('length2'))*1000)]
+        lights2 = (request.args.get('lights2') == 'on') ; 1, 0
+        order2.append(lights2)
+
+        allOrders = [order1, order2]
+        myShipment = ladderLogic(allOrders)
         palletsString = palletsInShipmentAsOneString(myShipment)
         palletsString = Markup(palletsString.replace('\n', '<br>'))
 

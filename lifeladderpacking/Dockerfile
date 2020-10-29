@@ -8,8 +8,8 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Install pip requirements
-ADD /dist/lifeladderpacking-1.0.0-py3-none-any.whl .
-RUN pip install /lifeladderpacking-1.0.0-py3-none-any.whl
+ADD /dist/lifeladderpacking-1.0.4-py3-none-any.whl .
+RUN pip install /lifeladderpacking-1.0.4-py3-none-any.whl
 ADD requirements.txt .
 RUN python -m pip install -r requirements.txt
 

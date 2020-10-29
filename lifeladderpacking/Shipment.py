@@ -9,7 +9,12 @@ class Shipment:
 
     # initialize a shipment
     def __init__(self, ladderLst):
-            
+        
+        try:
+            assert(ladderLst)
+        except: 
+            raise ValueError
+
         self.ladders = ladderLst
         self.pallets = []
         self.packOnEPALhalfpallets()

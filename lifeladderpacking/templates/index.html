@@ -16,9 +16,10 @@
     <img src="{{url_for('static', filename='packing1.jpg')}}" alt="The LifeLadder packing environment">
     <h2>Welcome to the LifeLadderPacker</h2>
     <form action="/pack">
-        
-        How many LifeLadders? <input type='text' name='amount1' size="5">&nbsp;&nbsp;&nbsp;
-        Length? <select name="length1"><option value="" class="placeholder" disabled  selected='selected'></option>
+        Max packing height is 1.8 meters. Change max packing height to:<input type="number" step="0.01" name='newMaxHeight' size="5">
+        <br><br>
+        How many LifeLadders? <input type='number' name='amount1' size="5" min="1">&nbsp;&nbsp;&nbsp;
+        Length? <select name="length1"><option value="0" class="placeholder" disabled  selected='selected'></option>
                 <option value="1.5" >1.5</option><option value="1.8" >1.8</option><option value="2.1" >2.1</option><option value="2.4" >2.4</option>
                 <option value="2.7" >2.7</option><option value="3.0" >3.0</option><option value="3.3" >3.3</option><option value="3.6" >3.6</option>
                 <option value="3.9" >3.9</option><option value="4.2" >4.2</option><option value="4.5" >4.5</option><option value="4.8" >4.8</option>
@@ -28,8 +29,11 @@
                 <option value="8.7" >8.7</option><option value="9.0" >9.0</option></select> meters &nbsp;&nbsp;&nbsp;
         Include LightUnits? <input type='checkbox' name='lights1'>
         <br>
-        How many LifeLadders? <input type='text' name='amount2' size="5">&nbsp;&nbsp;&nbsp;
-        Length? <select name="length2"><option value="" class="placeholder" disabled  selected='selected'></option>
+
+
+
+        How many LifeLadders? <input type='number' id='amount2' name='amount2' size="5" min="1">&nbsp;&nbsp;&nbsp;
+        Length? <select name="length2"><option value="0" class="placeholder" disabled  selected='selected'></option>
                 <option value="1.5" >1.5</option><option value="1.8" >1.8</option><option value="2.1" >2.1</option><option value="2.4" >2.4</option>
                 <option value="2.7" >2.7</option><option value="3.0" >3.0</option><option value="3.3" >3.3</option><option value="3.6" >3.6</option>
                 <option value="3.9" >3.9</option><option value="4.2" >4.2</option><option value="4.5" >4.5</option><option value="4.8" >4.8</option>
@@ -41,6 +45,40 @@
         <br>
 
 
+
+        How many LifeLadders? <input type='number' name='amount3' size="5" min="1">&nbsp;&nbsp;&nbsp;
+        Length? <select name="length3"><option value="0" class="placeholder" disabled  selected='selected'></option>
+                <option value="1.5" >1.5</option><option value="1.8" >1.8</option><option value="2.1" >2.1</option><option value="2.4" >2.4</option>
+                <option value="2.7" >2.7</option><option value="3.0" >3.0</option><option value="3.3" >3.3</option><option value="3.6" >3.6</option>
+                <option value="3.9" >3.9</option><option value="4.2" >4.2</option><option value="4.5" >4.5</option><option value="4.8" >4.8</option>
+                <option value="5.1" >5.1</option><option value="5.4" >5.4</option><option value="5.7" >5.7</option><option value="6.0" >6.0</option>
+                <option value="6.3" >6.3</option><option value="6.6" >6.6</option><option value="6.9" >6.9</option><option value="7.2" >7.2</option>
+                <option value="7.5" >7.5</option><option value="7.8" >7.8</option><option value="8.1" >8.1</option><option value="8.4" >8.4</option>
+                <option value="8.7" >8.7</option><option value="9.0" >9.0</option></select> meters &nbsp;&nbsp;&nbsp;
+        Include LightUnits? <input type='checkbox' name='lights3'>
+        <br>
+        How many LifeLadders? <input type='number' name='amount4' size="5" min="1">&nbsp;&nbsp;&nbsp;
+        Length? <select name="length4"><option value="0" class="placeholder" disabled  selected='selected'></option>
+                <option value="1.5" >1.5</option><option value="1.8" >1.8</option><option value="2.1" >2.1</option><option value="2.4" >2.4</option>
+                <option value="2.7" >2.7</option><option value="3.0" >3.0</option><option value="3.3" >3.3</option><option value="3.6" >3.6</option>
+                <option value="3.9" >3.9</option><option value="4.2" >4.2</option><option value="4.5" >4.5</option><option value="4.8" >4.8</option>
+                <option value="5.1" >5.1</option><option value="5.4" >5.4</option><option value="5.7" >5.7</option><option value="6.0" >6.0</option>
+                <option value="6.3" >6.3</option><option value="6.6" >6.6</option><option value="6.9" >6.9</option><option value="7.2" >7.2</option>
+                <option value="7.5" >7.5</option><option value="7.8" >7.8</option><option value="8.1" >8.1</option><option value="8.4" >8.4</option>
+                <option value="8.7" >8.7</option><option value="9.0" >9.0</option></select> meters &nbsp;&nbsp;&nbsp;
+        Include LightUnits? <input type='checkbox' name='lights4'>
+        <br>
+        How many LifeLadders? <input type='number' name='amount5' size="5" min="1">&nbsp;&nbsp;&nbsp;
+        Length? <select name="length5"><option value="0" class="placeholder" disabled  selected='selected'></option>
+                <option value="1.5" >1.5</option><option value="1.8" >1.8</option><option value="2.1" >2.1</option><option value="2.4" >2.4</option>
+                <option value="2.7" >2.7</option><option value="3.0" >3.0</option><option value="3.3" >3.3</option><option value="3.6" >3.6</option>
+                <option value="3.9" >3.9</option><option value="4.2" >4.2</option><option value="4.5" >4.5</option><option value="4.8" >4.8</option>
+                <option value="5.1" >5.1</option><option value="5.4" >5.4</option><option value="5.7" >5.7</option><option value="6.0" >6.0</option>
+                <option value="6.3" >6.3</option><option value="6.6" >6.6</option><option value="6.9" >6.9</option><option value="7.2" >7.2</option>
+                <option value="7.5" >7.5</option><option value="7.8" >7.8</option><option value="8.1" >8.1</option><option value="8.4" >8.4</option>
+                <option value="8.7" >8.7</option><option value="9.0" >9.0</option></select> meters &nbsp;&nbsp;&nbsp;
+        Include LightUnits? <input type='checkbox' name='lights5'>
+        
         <input type='submit' value='Continue'>
     </form>
 </body>

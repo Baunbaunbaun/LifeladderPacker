@@ -10,6 +10,12 @@ from lifeladderpacking.Calculations import createListOfLadders
 from lifeladderpacking.Shipment import Shipment
 
 def ladderLogic(lst):
+    
+    try: 
+        assert(lst)
+    except: 
+        return ValueError
+
     orderInLadders = createListOfLadders(lst)
     # create shipment 
     myShipment = Shipment(orderInLadders)

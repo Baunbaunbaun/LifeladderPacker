@@ -17,3 +17,6 @@ lifeladderpacking.egg-info/dependency_links.txt
 lifeladderpacking.egg-info/not-zip-safe
 lifeladderpacking.egg-info/requires.txt
 lifeladderpacking.egg-info/top_level.txt
+lifeladderpacking/static/packing1.jpg
+lifeladderpacking/templates/index.html
+lifeladderpacking/templates/pack.html
