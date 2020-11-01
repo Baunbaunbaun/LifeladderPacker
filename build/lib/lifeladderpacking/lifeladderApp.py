@@ -10,9 +10,20 @@ from lifeladderpacking.Calculations import createListOfLadders
 from lifeladderpacking.Shipment import Shipment
 
 def ladderLogic(lst):
+    
+    # is lst empty?
+    try: 
+        assert(lst)
+    except: 
+        return ValueError
+
+    # from order to ladders
     orderInLadders = createListOfLadders(lst)
+
     # create shipment 
     myShipment = Shipment(orderInLadders)
+
     # pair half pallets
     myShipment.pairEPALhalfpallets()
+
     return myShipment

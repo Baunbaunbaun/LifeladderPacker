@@ -8,7 +8,7 @@ import binpacking
 class Shipment:
 
     # initialize a shipment
-    def __init__(self, ladderLst):
+    def __init__(self, ladderLst, maxHeight = maxPackingHeight):
         
         try:
             assert(ladderLst)
@@ -16,6 +16,7 @@ class Shipment:
             raise ValueError
 
         self.ladders = ladderLst
+        self.maxHeight = maxHeight
         self.pallets = []
         self.packOnEPALhalfpallets()
         self.packedPallets = []
@@ -27,7 +28,7 @@ class Shipment:
     def packOnEPALhalfpallets(self):
         foldHeights = list(ladder.foldHeight for ladder in self.ladders)
         # use binpacking library
-        laddersHeightsInEPALhalfpallets = binpacking.to_constant_volume(foldHeights, maxPackingHeight-palletHeight-wrappingHeight)
+        laddersHeightsInEPALhalfpallets = binpacking.to_constant_volume(foldHeights, self.maxHeight-palletHeight-wrappingHeight)
         self.fromHeightsToLadders(laddersHeightsInEPALhalfpallets, self.ladders)
     
     def fromHeightsToLadders(self, heightLst, ladderLst):

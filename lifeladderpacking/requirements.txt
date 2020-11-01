@@ -1,4 +1,4 @@
-binpacking==1.4.1
-flask==1.1.2
-waitress==1.4.4
-wheel==0.35.1
+binpacking
+flask
+waitress
+wheel
