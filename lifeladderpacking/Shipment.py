@@ -38,7 +38,6 @@ class Shipment:
             # foldToLad = Ladder(0,0)
                 for ladder in ladderLst:
                     if(ladder.foldHeight == height):
-                        # print('LADDER IN PALLETN',ladder.id, height)
                         palletN.addLadder(ladder)
                         ladderLst.pop(ladderLst.index(ladder))
                         break

@@ -52,7 +52,6 @@ def create_app(test_config=None):
                 pass
 
         try: 
-            print('\nTEST: ', allOrders,'\n', maxHeight, '\n')
             myShipment = ladderLogic(allOrders, maxHeight)
             palletsString = palletsInShipmentAsOneString(myShipment)
             palletsString = Markup(palletsString.replace('\n', '<br>'))

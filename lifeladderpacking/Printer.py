@@ -12,7 +12,7 @@ def printLadder(ladder):
         print('\n**',oddEven,'LADDER',ladder.id,'**\n')
         print('LENGTH:\t\t', ladder.length/1000, 'M')
         print('MODULES:\t', ladder.modules)
-        print('WEIGHT:\t\t', round(ladder.weight/1000, 2), 'KG')
+        print('WEIGHT:\t\t', ladder.weight/1000, 'KG')
         print('FOLD HEIGHT:\t', ladder.foldHeight/1000, 'M')
         print('BRACKETS:\t', ladder.brackets)
         print('LIGHTUNITS:\t', ladder.lightUnits,'\n')

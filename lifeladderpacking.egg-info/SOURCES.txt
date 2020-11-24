@@ -10,7 +10,7 @@ lifeladderpacking/Shipment.py
 lifeladderpacking/UI.py
 lifeladderpacking/__init__.py
 lifeladderpacking/lifeladderApp.py
-lifeladderpacking/test_sample.py
+lifeladderpacking/test_app_calculations.py
 lifeladderpacking.egg-info/PKG-INFO
 lifeladderpacking.egg-info/SOURCES.txt
 lifeladderpacking.egg-info/dependency_links.txt

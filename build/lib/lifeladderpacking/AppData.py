@@ -18,15 +18,16 @@ moduleWeight = 1592
 bracketWeight = 6150
 fixedSuppliesWeight = 394
 
-repairSetWeight = [4233,4569,4905] # Small, Medium, Large
-lightUnitWeight = 2600 # with support
+repairSetWeight = [4485,5045,5583] # Small, Medium, Large
+lightUnitWeight = 2630 # with support
 handHoldWeight = [2800,0,6500] # Small, Medium, Large
 
 wrappingWeight = 2500
 
 # pallet data
-EPALhalfpalletWeight = 12500
-EPALhalfpalletLength = 600
+# weight in grams; length in mm
+EPALhalfpalletWeight = 12500    
+EPALhalfpalletLength = 600      
 EPALpalletLength = 1200
 palletWidth = 800
 palletHeight = 150
