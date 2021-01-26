@@ -1,5 +1,6 @@
 # max ladder length and max packing height in milimeters
 maxPackingHeight = 1800 
+maxHalfPackingHeight = 1200
 maxLadderLength = 9000
 
 # a list of ladders

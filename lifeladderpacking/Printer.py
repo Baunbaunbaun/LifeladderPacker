@@ -1,6 +1,6 @@
 # classes
-from  lifeladderpacking.Pallet import EPALhalfpallet, EPALpallet
-from  lifeladderpacking.Calculations import dimensionsFormatter
+from   Pallet import EPALhalfpallet, EPALpallet
+from   Calculations import dimensionsFormatter
 from math import ceil
 
 def printLadder(ladder):
@@ -51,7 +51,7 @@ def printShipmentEPALpallets(shipment):
     print('\nTotal weight:', ceil(sum(pallet.weight for pallet in shipment.packedPallets)/1000) ,'KG\n')
     
 def printPallet(pallet):
-    if(type(pallet)== EPALhalfpallet):
+    if type(pallet)== EPALhalfpallet:
         palletType = 'EPAL HALF PALLET'
     else: 
         palletType = 'EPAL PALLET'
@@ -62,6 +62,17 @@ def printPallet(pallet):
 def printList(lst):
     for item in lst:
         print(item)
+
+def printTheLastHalfPallet(shipment):
+    count = 0
+    for pallet in reversed(shipment.packedPallets):
+        print(count)
+        count = count+1
+        if type(pallet) == EPALhalfpallet:
+            print('This is the single half pallet in shipment:')
+            printPallet(pallet)
+            break
+    print('No halfpallets in this shipment')
 
 
         

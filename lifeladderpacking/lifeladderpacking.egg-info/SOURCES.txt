@@ -1,8 +1,8 @@
 README.md
 setup.py
-lifeladderpacking.egg-info/PKG-INFO
-lifeladderpacking.egg-info/SOURCES.txt
-lifeladderpacking.egg-info/dependency_links.txt
-lifeladderpacking.egg-info/not-zip-safe
-lifeladderpacking.egg-info/requires.txt
-lifeladderpacking.egg-info/top_level.txt
+ egg-info/PKG-INFO
+ egg-info/SOURCES.txt
+ egg-info/dependency_links.txt
+ egg-info/not-zip-safe
+ egg-info/requires.txt
+ egg-info/top_level.txt

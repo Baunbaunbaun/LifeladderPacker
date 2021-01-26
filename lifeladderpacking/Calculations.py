@@ -1,9 +1,10 @@
 # imports
-from  lifeladderpacking.AppData import *
-from  lifeladderpacking.Ladder import Ladder
-from  lifeladderpacking.Pallet import *
+from   AppData import *
+from   Ladder import Ladder
+from   Pallet import *
 
 def createListOfLadders(order):
+    print(order)
     ladderLst = []
     for request in order: 
         ladderLst = ladderLst + createLadders(request[0],request[1],request[2])

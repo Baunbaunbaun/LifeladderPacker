@@ -1,7 +1,7 @@
 # imports
-from  lifeladderpacking.AppData import maxPackingHeight, palletHeight, wrappingHeight
+from  AppData import maxPackingHeight, maxHalfPackingHeight, palletHeight, wrappingHeight
 #from Calculations import pairEPALhalfpallets
-from  lifeladderpacking.Pallet import EPALhalfpallet, EPALpallet
+from  Pallet import EPALhalfpallet, EPALpallet
 import binpacking
 
 # Shipment object
@@ -25,34 +25,32 @@ class Shipment:
         #self.maxHeightForBestStability = None
         #self.packedStabil = []
     
-    def packOnEPALhalfpallets(self):
+    def packOnEPALhalfpallets(self, extraHalfPallet = 0):
         foldHeights = list(ladder.foldHeight for ladder in self.ladders)
-        # use binpacking library
-        laddersHeightsInEPALhalfpallets = binpacking.to_constant_volume(foldHeights, self.maxHeight-palletHeight-wrappingHeight)
-        self.fromHeightsToLadders(laddersHeightsInEPALhalfpallets, self.ladders)
+        # use binpacking library to pack on min num of pallets
+        ladderHeightsInEPALhalfpallets = binpacking.to_constant_volume(foldHeights, self.maxHeight-palletHeight-wrappingHeight)
+        # use binpacking library to even out the ladders on min num of pallets
+        ladderHeightsInEPALhalfpallets = binpacking.to_constant_bin_number(foldHeights, len(ladderHeightsInEPALhalfpallets)+extraHalfPallet)
+        self.__fromHeightsToLadders(ladderHeightsInEPALhalfpallets, self.ladders)
     
-    def fromHeightsToLadders(self, heightLst, ladderLst):
+    def __fromHeightsToLadders(self, heightLst, ladderLst):
+        laddersCopy = ladderLst.copy()
+        pallets = []
         for p in heightLst:
             palletN = EPALhalfpallet()
             for height in p:
-            # foldToLad = Ladder(0,0)
-                for ladder in ladderLst:
+                for ladder in laddersCopy:
                     if(ladder.foldHeight == height):
                         palletN.addLadder(ladder)
-                        ladderLst.pop(ladderLst.index(ladder))
+                        laddersCopy.pop(laddersCopy.index(ladder))
                         break
-            self.pallets.append(palletN)   
+            pallets.append(palletN)
+        self.pallets = pallets           
+        self.packedPallets = self.pairEPALhalfpallets()
 
-    #def balancePallets(self):
-     #   pallets = pallets
-    
-    def getEPALdistribution(self):
-        half = len(pallets)%2
-        return [len(packedPallets)-half, half]
-    
     # merge EPALhalfpallets to EPALpallets
     def pairEPALhalfpallets(self):
-        palletsCopy = self.pallets
+        palletsCopy = self.pallets.copy()
         heights = list(pallet.height for pallet in palletsCopy)
         heights = sorted(heights)
         palletsCopy = sorted(palletsCopy)
@@ -72,7 +70,17 @@ class Shipment:
             heights.pop(index)
         if(len(palletsCopy)==1):
             resultPallets.append(palletsCopy.pop())
+
+        if len(self.pallets)%2 != 0:
+            for p in self.pallets:
+                if (type(p) == EPALhalfpallet) and (p.height > maxHalfPackingHeight):
+                    self.packOnEPALhalfpallets(1)
+
         self.packedPallets = resultPallets 
+    
+    def getEPALdistribution(self):
+        half = len(self.pallets)%2
+        return [len(self.packedPallets)-half, half]
     
     @staticmethod
     def calcNewPackingWithBestEvenOddDistribution(self):

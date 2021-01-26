@@ -1,6 +1,6 @@
 # imports
 from math import floor
-from lifeladderpacking.AppData import *
+from  AppData import *
 
 class Ladder:
 

@@ -9,7 +9,9 @@ lifeladderpacking/Printer.py
 lifeladderpacking/Shipment.py
 lifeladderpacking/UI.py
 lifeladderpacking/__init__.py
+lifeladderpacking/evenOdd.py
 lifeladderpacking/lifeladderApp.py
+lifeladderpacking/newFile.py
 lifeladderpacking/test_app_calculations.py
 lifeladderpacking.egg-info/PKG-INFO
 lifeladderpacking.egg-info/SOURCES.txt

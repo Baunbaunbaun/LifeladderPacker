@@ -6,9 +6,10 @@
 # Lifeladder packing for PortS
 # July 2019 - October 2020
 
-from lifeladderpacking.Calculations import createListOfLadders
-from lifeladderpacking.Shipment import Shipment
-from lifeladderpacking.AppData import maxPackingHeight
+from  Calculations import createListOfLadders
+from  Shipment import Shipment
+from  AppData import maxPackingHeight
+from  Printer import printListOfLadders
 
 def ladderLogic(lst, maxHeight=maxPackingHeight):
     

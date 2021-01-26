@@ -1,6 +1,6 @@
 # imports
 from math import floor
-from lifeladderpacking.AppData import *
+from  AppData import *
 
 class Ladder:
 
@@ -61,10 +61,6 @@ class Ladder:
     # calc ladder weight
     @staticmethod
     def calcWeight(ladder):
-        print("Modules: ", ladder.modules,
-            " LifeLadder only: ", ladder.modules * moduleWeight + fixedSuppliesWeight,
-            " With brackets: ", ladder.modules * moduleWeight + fixedSuppliesWeight + ladder.brackets * bracketWeight,
-            " Foldheight : ", ladder.foldHeight)
         return (
             ladder.modules * moduleWeight + # modules
             ladder.brackets * bracketWeight + # brackets

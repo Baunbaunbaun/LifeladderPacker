@@ -2,9 +2,9 @@ import os
 from flask import Flask, request, render_template, Markup
 from functools import reduce
 from datetime import datetime
-from lifeladderpacking.lifeladderApp import ladderLogic
-from lifeladderpacking.UI import palletsInShipmentAsOneString
-from lifeladderpacking.AppData import maxPackingHeight
+from  lifeladderApp import ladderLogic
+from  UI import palletsInShipmentAsOneString
+from  AppData import maxPackingHeight
 
 def create_app(test_config=None):
     # create and configure the app
