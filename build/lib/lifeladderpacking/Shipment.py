@@ -1,7 +1,8 @@
 # imports
-from  AppData import maxPackingHeight, maxHalfPackingHeight, palletHeight, wrappingHeight
+from AppData import maxPackingHeight, maxHalfPackingHeight, palletHeight, wrappingHeight
 #from Calculations import pairEPALhalfpallets
-from  Pallet import EPALhalfpallet, EPALpallet
+from Pallet import EPALhalfpallet, EPALpallet
+from IdGenerator import resetIDs
 import binpacking
 
 # Shipment object
@@ -36,6 +37,7 @@ class Shipment:
     def __fromHeightsToLadders(self, heightLst, ladderLst):
         laddersCopy = ladderLst.copy()
         pallets = []
+
         for p in heightLst:
             palletN = EPALhalfpallet()
             for height in p:

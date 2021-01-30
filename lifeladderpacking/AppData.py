@@ -43,26 +43,3 @@ wrappingHeight = 50
 small = 0
 medium = 1
 large = 2
-
-# ladder ID generator
-ladderID = 1
-def getLadderID():
-    global ladderID
-    newID = ladderID
-    ladderID += 1
-    return newID
-
-# pallet ID generators
-palletID = 1
-def getPalletID():
-    global palletID
-    newID = palletID
-    palletID += 1
-    return newID
-
-EPALpalletID = 1
-def getEPALpalletID():
-    global EPALpalletID
-    newID = EPALpalletID
-    EPALpalletID += 1
-    return newID

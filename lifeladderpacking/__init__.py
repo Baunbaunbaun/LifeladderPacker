@@ -2,9 +2,9 @@ import os
 from flask import Flask, request, render_template, Markup
 from functools import reduce
 from datetime import datetime
-from  lifeladderApp import ladderLogic
-from  UI import palletsInShipmentAsOneString
-from  AppData import maxPackingHeight
+from lifeladderApp import ladderLogic
+from UI import palletsInShipmentAsOneString
+from AppData import maxPackingHeight
 
 def create_app(test_config=None):
     # create and configure the app
@@ -33,7 +33,6 @@ def create_app(test_config=None):
 
     @app.route('/pack')
     def pack():
-
         maxHeight = maxPackingHeight
         try:
             maxHeight = int(float(request.args.get('newMaxHeight'))*1000)
@@ -42,7 +41,7 @@ def create_app(test_config=None):
 
         allOrders = []
 
-        for index in range(1,5):
+        for index in range(1,6):
             try:
                 amount = int(request.args.get('amount'+str(index)))
                 length = int(float(request.args.get('length'+str(index)))*1000)

@@ -1,7 +1,7 @@
 # imports
-from  AppData import maxPackingHeight, maxHalfPackingHeight, palletHeight, wrappingHeight
-#from Calculations import pairEPALhalfpallets
-from  Pallet import EPALhalfpallet, EPALpallet
+from lifeladderpacking.IdGenerator import resetIDs
+from lifeladderpacking.AppData import maxPackingHeight, maxHalfPackingHeight, palletHeight, wrappingHeight
+from lifeladderpacking.Pallet import EPALhalfpallet, EPALpallet
 import binpacking
 
 # Shipment object
@@ -26,6 +26,7 @@ class Shipment:
         #self.packedStabil = []
     
     def packOnEPALhalfpallets(self, extraHalfPallet = 0):
+        resetIDs()
         foldHeights = list(ladder.foldHeight for ladder in self.ladders)
         # use binpacking library to pack on min num of pallets
         ladderHeightsInEPALhalfpallets = binpacking.to_constant_volume(foldHeights, self.maxHeight-palletHeight-wrappingHeight)
