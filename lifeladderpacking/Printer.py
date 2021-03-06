@@ -1,6 +1,6 @@
 # classes
-from   Pallet import EPALhalfpallet, EPALpallet
-from   Calculations import dimensionsFormatter
+from Pallet import EPALhalfpallet, EPALpallet
+from Calculations import dimensionsFormatter
 from math import ceil
 
 def printLadder(ladder):

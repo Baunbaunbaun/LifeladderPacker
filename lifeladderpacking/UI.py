@@ -1,5 +1,5 @@
 from math import ceil
-from lifeladderpacking.Pallet import EPALhalfpallet, EPALpallet
+from Pallet import EPALhalfpallet, EPALpallet
 palletNumbering = 0
 
 def stringBuildPallet(pallet):

@@ -1,6 +1,5 @@
 import os
 from flask import Flask, request, render_template, Markup
-from functools import reduce
 from datetime import datetime
 from lifeladderApp import ladderLogic
 from UI import palletsInShipmentAsOneString
@@ -26,11 +25,12 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
+    # input page
     @app.route('/')
     def home():
         return render_template("/index.html") 
 
+    # output page
     @app.route('/pack')
     def pack():
         maxHeight = maxPackingHeight

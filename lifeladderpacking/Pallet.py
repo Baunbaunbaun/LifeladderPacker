@@ -1,6 +1,6 @@
 # imports
-from lifeladderpacking.AppData import *
-from lifeladderpacking.IdGenerator import getPalletID, getEPALpalletID
+from AppData import *
+from IdGenerator import getPalletID, getEPALpalletID
 
 # pallet parent object
 class Pallet: 
