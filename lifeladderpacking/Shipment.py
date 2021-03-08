@@ -1,6 +1,5 @@
 # imports
 from IdGenerator import resetIDs
-from AppData import maxPackingHeight, maxHalfPackingHeight, palletHeight, wrappingHeight
 from Pallet import EPALhalfpallet, EPALpallet
 from AppData import *
 import binpacking
@@ -25,14 +24,6 @@ class Shipment:
         #self.maxHeightForOneLessPallet = None
         #self.maxHeightForBestStability = None
         #self.packedStabil = []
-    
-    @classmethod
-    def dimensionsFormatter(cls, pallet):
-        if (type(pallet)== EPALhalfpallet):
-            dim = [palletWidth/1000, EPALhalfpalletLength/1000, pallet.height/1000] 
-        else: 
-            dim = [palletWidth/1000, EPALpalletLength/1000, pallet.height/1000] 
-        return str(round(dim[0],1))+' X '+str(round(dim[1],1))+' X '+str(round(dim[2],1))
 
     def packOnEPALhalfpallets(self, extraHalfPallet = 0):
         resetIDs()
@@ -92,7 +83,6 @@ class Shipment:
         half = len(self.pallets)%2
         return [len(self.packedPallets)-half, half]
     
-    @staticmethod
     def calcNewPackingWithBestEvenOddDistribution(self):
         '''
         use ladderLst and len(pallets) to create a new improved packing. 
