@@ -1,5 +1,5 @@
-# LifeLadderPacking
-In the LifeLadderPacking app you can create LADDERS by telling amount, length and number of light units.  
+# LifeLadderPacker
+In the LifeLadderPacker app you can create LADDERS by telling amount, length and number of light units.  
 
 When you have a list of ladders you can create a SHIPMENT which is a collection of packed pallets.   
 
