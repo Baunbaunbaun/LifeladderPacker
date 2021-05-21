@@ -1,6 +1,6 @@
 # classes
-from   Pallet import EPALhalfpallet, EPALpallet
-from   Calculations import dimensionsFormatter
+from Pallet import EPALhalfpallet, EPALpallet
+from Calculations import dimensionsFormatter
 from math import ceil
 
 def printLadder(ladder):
@@ -51,13 +51,17 @@ def printShipmentEPALpallets(shipment):
     print('\nTotal weight:', ceil(sum(pallet.weight for pallet in shipment.packedPallets)/1000) ,'KG\n')
     
 def printPallet(pallet):
+
     if type(pallet)== EPALhalfpallet:
         palletType = 'EPAL HALF PALLET'
+        dimensions = EPALhalfpallet.getDimensions(pallet)
     else: 
         palletType = 'EPAL PALLET'
+        dimensions = EPALhalfpallet.getDimensions(pallet)
+
     print('==',palletType,pallet.id,'==')
-    print('DIMENSIONS:\t', dimensionsFormatter(pallet), 'M   (W x L x H)')
-    print('WEIGHT:\t\t', round(pallet.weight/1000), 'KG\n')
+    print(f'DIMENSIONS:\t {dimensions} (W x L x H)')
+    print(f'WEIGHT:\t\t {round(pallet.weight/1000)} KG\n')
     
 def printList(lst):
     for item in lst:

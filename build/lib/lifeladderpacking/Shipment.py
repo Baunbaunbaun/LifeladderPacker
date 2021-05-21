@@ -1,8 +1,7 @@
 # imports
-from AppData import maxPackingHeight, maxHalfPackingHeight, palletHeight, wrappingHeight
-#from Calculations import pairEPALhalfpallets
-from Pallet import EPALhalfpallet, EPALpallet
 from IdGenerator import resetIDs
+from Pallet import EPALhalfpallet, EPALpallet
+from AppData import *
 import binpacking
 
 # Shipment object
@@ -25,8 +24,9 @@ class Shipment:
         #self.maxHeightForOneLessPallet = None
         #self.maxHeightForBestStability = None
         #self.packedStabil = []
-    
+
     def packOnEPALhalfpallets(self, extraHalfPallet = 0):
+        resetIDs()
         foldHeights = list(ladder.foldHeight for ladder in self.ladders)
         # use binpacking library to pack on min num of pallets
         ladderHeightsInEPALhalfpallets = binpacking.to_constant_volume(foldHeights, self.maxHeight-palletHeight-wrappingHeight)
@@ -37,7 +37,6 @@ class Shipment:
     def __fromHeightsToLadders(self, heightLst, ladderLst):
         laddersCopy = ladderLst.copy()
         pallets = []
-
         for p in heightLst:
             palletN = EPALhalfpallet()
             for height in p:
@@ -84,7 +83,6 @@ class Shipment:
         half = len(self.pallets)%2
         return [len(self.packedPallets)-half, half]
     
-    @staticmethod
     def calcNewPackingWithBestEvenOddDistribution(self):
         '''
         use ladderLst and len(pallets) to create a new improved packing. 

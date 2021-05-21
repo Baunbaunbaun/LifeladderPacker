@@ -1,6 +1,7 @@
 # imports
 from math import floor
-from  AppData import *
+from AppData import *
+from IdGenerator import getLadderID
 
 class Ladder:
 
@@ -25,14 +26,30 @@ class Ladder:
             return cls(length, lights)
         else: 
             return cls(0,0)
-        
+
+    @classmethod
+    def createListOfLadders(cls, order):
+        print(order)
+        ladderLst = []
+        for request in order: 
+            ladderLst = ladderLst + cls.createLadders(request[0],request[1],request[2])
+        return ladderLst
+    
+    @classmethod
+    def createLadders(cls, amount, length, lights): 
+        ladderLst = []
+        for l in range(amount):
+            x = cls.create(length,lights) 
+            ladderLst.append(x) 
+        return ladderLst
+
     def __lt__(self, other):
         return (self.foldHeight < other.foldHeight)
     
     @staticmethod
     def lengthIsLegal(length):
-        if(length<=0 or 
-            length>maxLadderLength or 
+        if(length <= 0 or 
+            length > maxLadderLength or 
             length % moduleLength != 0):
             return False
         else: 
