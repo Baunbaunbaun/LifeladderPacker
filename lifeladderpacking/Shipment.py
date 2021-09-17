@@ -72,7 +72,8 @@ class Shipment:
         if(len(palletsCopy)==1):
             resultPallets.append(palletsCopy.pop())
 
-        if len(self.pallets)%2 != 0:
+        # odd pallets
+        if len(self.pallets)%2 == 1:
             for p in self.pallets:
                 if (type(p) == EPALhalfpallet) and (p.height > maxHalfPackingHeight):
                     self.packOnEPALhalfpallets(1)

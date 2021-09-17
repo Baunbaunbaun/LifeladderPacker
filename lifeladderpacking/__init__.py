@@ -1,10 +1,14 @@
 import os
 from flask import Flask, request, render_template, Markup
 from datetime import datetime
+
+import sys
+sys.path.append("/Users/baunbaun/Dropbox/lifeladderwork/lifeladderpacking/lifeladderApp")
+
 from lifeladderApp import ladderLogic
 from UI import palletsInShipmentAsOneString
-
 from AppData import maxPackingHeight
+
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
